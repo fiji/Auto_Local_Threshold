@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>17.1.1</version>
+		<version>20.2.0</version>
 		<relativePath />
 	</parent>
 
 	<groupId>sc.fiji</groupId>
-	<artifactId>Auto_Threshold</artifactId>
-	<version>1.17.1-SNAPSHOT</version>
+	<artifactId>Auto_Local_Threshold</artifactId>
+	<version>1.10.0-SNAPSHOT</version>
 
-	<name>Auto Threshold</name>
-	<description>Auto Threshold plugin for Fiji.</description>
-	<url>http://imagej.net/Auto_Threshold</url>
+	<name>Auto Local Threshold</name>
+	<description>Auto Local Threshold plugin for Fiji.</description>
+	<url>http://imagej.net/Auto_Local_Threshold</url>
 	<inceptionYear>2009</inceptionYear>
 	<organization>
 		<name>Fiji</name>
@@ -81,18 +81,18 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/fiji/Auto_Threshold</connection>
-		<developerConnection>scm:git:git@github.com:fiji/Auto_Threshold</developerConnection>
+		<connection>scm:git:git://github.com/fiji/Auto_Local_Threshold</connection>
+		<developerConnection>scm:git:git@github.com:fiji/Auto_Local_Threshold</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/fiji/Auto_Threshold</url>
+		<url>https://github.com/fiji/Auto_Local_Threshold</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/fiji/Auto_Threshold/issues</url>
+		<url>https://github.com/fiji/Auto_Local_Threshold/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/fiji/Auto_Threshold</url>
+		<url>https://travis-ci.org/fiji/Auto_Local_Threshold</url>
 	</ciManagement>
 
 	<properties>
