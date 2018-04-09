@@ -268,7 +268,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		int temp;
 
 		if (par1!=0) {
-			IJ.log("Bernsen: changed contrast_threshold from :"+ contrast_threshold + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Bernsen: changed contrast_threshold from :"+ contrast_threshold + "  to:" + par1);
 			contrast_threshold= (int) par1;
 		}
 
@@ -359,7 +359,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte backg;
 
 		if (par1!=0) {
-			IJ.log("Mean: changed c_value from :"+ c_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Mean: changed c_value from :"+ c_value + "  to:" + par1);
 			c_value= (int)par1;
 		}
 
@@ -399,7 +399,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte backg;
 
 		if (par1!=0) {
-			IJ.log("Median: changed c_value from :"+ c_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Median: changed c_value from :"+ c_value + "  to:" + par1);
 			c_value= (int) par1;
 		}
 
@@ -437,7 +437,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte backg;
 
 		if (par1!=0) {
-			IJ.log("MidGrey: changed c_value from :"+ c_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("MidGrey: changed c_value from :"+ c_value + "  to:" + par1);
 			c_value= (int) par1;
 		}
 
@@ -497,12 +497,12 @@ public class Auto_Local_Threshold implements PlugIn {
 		}
 
 		if (par1!=0) {
-			IJ.log("Niblack: changed k_value from :"+ k_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Niblack: changed k_value from :"+ k_value + "  to:" + par1);
 			k_value= par1;
 		}
 
 		if (par2!=0) {
-			IJ.log("Niblack: changed c_value from :"+ c_value + "  to:" + par2);// requested feature, not in original
+			if (IJ.debugMode) IJ.log("Niblack: changed c_value from :"+ c_value + "  to:" + par2);// requested feature, not in original
 			c_value=(int)par2;
 		}
 
@@ -647,12 +647,12 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte backg;
 
 		if (par1!=0) {
-			IJ.log("Phansalkar: changed k_value from :"+ k_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Phansalkar: changed k_value from :"+ k_value + "  to:" + par1);
 			k_value= par1;
 		}
 
 		if (par2!=0) {
-			IJ.log("Phansalkar: changed r_value from :"+r_value + "  to:" + par2);
+			if (IJ.debugMode) IJ.log("Phansalkar: changed r_value from :"+r_value + "  to:" + par2);
 			r_value= par2;
 		}
 
@@ -725,12 +725,12 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte backg;
 
 		if (par1!=0) {
-			IJ.log("Sauvola: changed k_value from :"+ k_value + "  to:" + par1);
+			if (IJ.debugMode) IJ.log("Sauvola: changed k_value from :"+ k_value + "  to:" + par1);
 			k_value= par1;
 		}
 
 		if (par2!=0) {
-			IJ.log("Sauvola: changed r_value from :"+r_value + "  to:" + par2);
+			if (IJ.debugMode) IJ.log("Sauvola: changed r_value from :"+r_value + "  to:" + par2);
 			r_value= par2;
 		}
 
