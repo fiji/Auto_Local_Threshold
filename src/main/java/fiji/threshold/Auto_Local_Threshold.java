@@ -38,6 +38,8 @@ import ij.process.Blitter;
 import ij.process.ImageConverter;
 import ij.process.ImageProcessor;
 
+import org.scijava.util.VersionUtils;
+
 // AutoLocalThreshold segmentation 
 // Following the guidelines at http://pacific.mpi-cbg.de/wiki/index.php/PlugIn_Design_Guidelines
 // ImageJ plugin by G. Landini at bham. ac. uk
@@ -74,7 +76,8 @@ public class Auto_Local_Threshold implements PlugIn {
 		 // 2 - Ask for parameters:
 		GenericDialog gd = new GenericDialog("Auto Local Threshold");
 		String [] methods={"Try all", "Bernsen", "Contrast", "Mean", "Median", "MidGrey", "Niblack","Otsu", "Phansalkar", "Sauvola"};
-		gd.addMessage("Auto Local Threshold v1.10");
+		String version = VersionUtils.getVersion(getClass());
+		gd.addMessage("Auto Local Threshold v" + version);
 		gd.addChoice("Method", methods, methods[0]);
 		gd.addNumericField ("Radius",  15, 0);
 		gd.addMessage ("Special parameters (if different from default)");
