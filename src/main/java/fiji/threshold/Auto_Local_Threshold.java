@@ -55,6 +55,7 @@ import org.scijava.util.VersionUtils;
 // 1.8  10/Jun/2017 Changed Otsu algorithm to use E. Celebi's code (old code had a potential issue in some 16bit images, and while 16 bit images are not used here, we want to use same algorithm as Auto_Threshold plugin).
 // 1.9  3/Apr/2018  Fixed Otsu method: do not return background as thresholded when image is all 0. Reported by Clyde Pinto.
 // 1.10 4/Apr/2018  Contrast method should not return background as thresholded when the pixel is 0 and there is no definite direction to toggle to.
+// 1.11 8/Mar/2021  Thanks to Peter Haub resolved a problem with overflowing in the Contrast method. Fixed other potential overflows.
 
                 
 public class Auto_Local_Threshold implements PlugIn {
@@ -298,8 +299,8 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte[] min = (byte [])ipMin.getPixels();
 
 		for (int i=0; i<pixels.length; i++) {
-			local_contrast = (int)((max[i]&0xff) -(min[i]&0xff));
-			mid_gray =(int) ((min[i]&0xff) + (max[i]&0xff) )/ 2;
+			local_contrast = (int)(max[i]&0xff) - (int)(min[i]&0xff);
+			mid_gray =((int) (min[i]&0xff) + (int) (max[i]&0xff)) / 2;
 			temp=(int) (pixels[i] & 0x0000ff);
 			if ( local_contrast < contrast_threshold )
 				pixels[i] = ( mid_gray >= 128 ) ? object :  backg;  //Low contrast region
@@ -346,7 +347,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte[] max = (byte [])ipMax.getPixels();
 		byte[] min = (byte [])ipMin.getPixels();
 		for (int i=0; i<pixels.length; i++) {
-			pixels[i] = ((Math.abs((int)(max[i]&0xff- pixels[i]&0xff)) <= Math.abs((int)(pixels[i]&0xff- min[i]&0xff))) && ((int)(pixels[i]&0xff) != 0)) ? object :  backg;
+			pixels[i] = ((Math.abs((int)(max[i]&0xff) - (int) (pixels[i]&0xff)) <= Math.abs((int)(pixels[i]&0xff) - (int) (min[i]&0xff))) && ((int)(pixels[i]&0xff) != 0)) ? object :  backg;
 		}    
 		//imp.updateAndDraw();
 		return;
@@ -424,7 +425,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte[] median = (byte []) ipMedian.getPixels();
 
 		for (int i=0; i<pixels.length; i++) 
-			pixels[i] = ( (int)(pixels[i] &0xff) > (int)( (median[i]  &0xff) - c_value)) ? object : backg;
+			pixels[i] = ((int)(pixels[i] &0xff) > ((int)( median[i]  &0xff) - c_value)) ? object : backg;
 		//imp.updateAndDraw();
 		return;
 	}
@@ -467,8 +468,8 @@ public class Auto_Local_Threshold implements PlugIn {
 		byte[] min = (byte [])ipMin.getPixels();
 
 		for (int i=0; i<pixels.length; i++) {
-				pixels[i] = ( (int)(pixels[i] &0xff) > (int)(((max[i]&0xff) +(min[i]&0xff))/2) - c_value ) ? object : backg;
-		}    
+			pixels[i] = ((int)(pixels[i] &0xff) > ((((int)(max[i]&0xff) + (int) (min[i]&0xff))/2) - c_value )) ? object : backg;
+		}
 		//imp.updateAndDraw();
 		return;
 	}
@@ -765,7 +766,7 @@ public class Auto_Local_Threshold implements PlugIn {
 		float[] var = (float []) ipVar.getPixels();
 
 		for (int i=0; i<pixels.length; i++) 
-			pixels[i] = ( (int)(pixels[i] &0xff) > (int)( mean[i] * (1.0+ k_value *(( Math.sqrt ( var[i] )/r_value)-1.0)))) ? object : backg;
+			pixels[i] = ( (int)(pixels[i] &0xff) > (int)( mean[i] * (1.0 + k_value *(( Math.sqrt ( var[i] )/r_value) - 1.0)))) ? object : backg;
 		//imp.updateAndDraw();
 		return;
 	}
